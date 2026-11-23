@@ -1,0 +1,708 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="TraceFood project" compressed="false">
+  <diagram id="dfd-level-0" name="DFD Level 0 — System context">
+    <mxGraphModel dx="1410" dy="890" page="1" pageWidth="1410" pageHeight="890" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="heading" value="&lt;b&gt;TraceFood · DFD Level 0 — System context&lt;/b&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=29;fontColor=#213042;resizable=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="42" y="20" width="1326" height="45" />
+        </mxCell>
+        <mxCell id="subtitle" value="External participants and the information they exchange with TraceFood" style="text;html=1;whiteSpace=wrap;strokeColor=none;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#496073;resizable=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="43" y="62" width="1326" height="25" />
+        </mxCell>
+        <mxCell id="p0" value="&lt;b&gt;P0&lt;/b&gt;&lt;br&gt;TraceFood&lt;br&gt;AI-Powered Food Supply Chain&lt;br&gt;Traceability System" style="whiteSpace=wrap;html=1;fillColor=#dceaff;strokeColor=#3560a0;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;ellipse;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1060" y="334" width="304" height="240" />
+        </mxCell>
+        <mxCell id="e1" value="&lt;b&gt;E1&lt;/b&gt;&lt;br&gt;Farm / Producer" style="whiteSpace=wrap;html=1;fillColor=#dbefdf;strokeColor=#3a7754;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="49" y="126" width="220" height="78" />
+        </mxCell>
+        <mxCell id="e2" value="&lt;b&gt;E2&lt;/b&gt;&lt;br&gt;Processing Facility" style="whiteSpace=wrap;html=1;fillColor=#dbefdf;strokeColor=#3a7754;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="49" y="272" width="220" height="78" />
+        </mxCell>
+        <mxCell id="e3" value="&lt;b&gt;E3&lt;/b&gt;&lt;br&gt;Distributor / Transporter" style="whiteSpace=wrap;html=1;fillColor=#dbefdf;strokeColor=#3a7754;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="49" y="418" width="220" height="78" />
+        </mxCell>
+        <mxCell id="e4" value="&lt;b&gt;E4&lt;/b&gt;&lt;br&gt;Retailer" style="whiteSpace=wrap;html=1;fillColor=#dbefdf;strokeColor=#3a7754;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="49" y="564" width="220" height="78" />
+        </mxCell>
+        <mxCell id="e5" value="&lt;b&gt;E5&lt;/b&gt;&lt;br&gt;System User / Analyst" style="whiteSpace=wrap;html=1;fillColor=#dbefdf;strokeColor=#3a7754;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="49" y="710" width="220" height="78" />
+        </mxCell>
+        <mxCell id="flow-00" value="Farm details; batch information; production data" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.22;exitPerimeter=0;entryX=0.2;entryY=0.1;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="e1" target="p0">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="983" y="143" />
+            </Array>
+            <mxPoint as="offset" x="-152.68" y="-19.05" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-01" value="Registration confirmation; batch traceability information" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.09;exitY=0.21;exitPerimeter=0;entryX=1;entryY=0.72;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p0" target="e1">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="975" y="182" />
+            </Array>
+            <mxPoint as="offset" x="-137.75" y="22.95" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-02" value="Facility details; processing details;&lt;br&gt;input/output batch and quantity information; quality-check results" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.22;exitPerimeter=0;entryX=0.04;entryY=0.31;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="e2" target="p0">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="925" y="289" />
+            </Array>
+            <mxPoint as="offset" x="-90.75" y="-19.06" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-03" value="Processing confirmation; batch lineage information;&lt;br&gt;quality-check confirmation; anomaly alerts" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.01;exitY=0.41;exitPerimeter=0;entryX=1;entryY=0.72;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p0" target="e2">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="917" y="328" />
+            </Array>
+            <mxPoint as="offset" x="-82.76" y="22.94" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-04" value="Shipment details; batches and quantities;&lt;br&gt;shipment source and destination" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.22;exitPerimeter=0;entryX=0;entryY=0.47;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="e3" target="p0">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="925" y="435" />
+            </Array>
+            <mxPoint as="offset" x="-63.76" y="-19.06" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-05" value="Shipment confirmation/status; traceability information;&lt;br&gt;anomaly or contamination alerts" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0;exitY=0.55;exitPerimeter=0;entryX=1;entryY=0.72;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p0" target="e3">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="917" y="474" />
+            </Array>
+            <mxPoint as="offset" x="-64.61" y="22.94" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-06" value="Retailer details; received-batch details;&lt;br&gt;retail price records; quality observations" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.22;exitPerimeter=0;entryX=0.015;entryY=0.62;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="e4" target="p0">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="925" y="581" />
+            </Array>
+            <mxPoint as="offset" x="-81.32" y="-19.06" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-07" value="Batch provenance information; contamination alerts; price analysis information" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.05;exitY=0.72;exitPerimeter=0;entryX=1;entryY=0.72;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p0" target="e4">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="917" y="620" />
+            </Array>
+            <mxPoint as="offset" x="-90.26" y="22.94" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-08" value="Natural-language queries; report requests; simulation requests;&lt;br&gt;analysis and investigation requests" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.22;exitPerimeter=0;entryX=0.1;entryY=0.8;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="e5" target="p0">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="983" y="727" />
+            </Array>
+            <mxPoint as="offset" x="-138.95" y="-19.05" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-09" value="Query results; traceability reports; price trends; supported forecasts; anomaly alerts&lt;br&gt;and explanations; contamination impact reports; simulation results" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.21;exitY=0.9;exitPerimeter=0;entryX=1;entryY=0.72;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p0" target="e5">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="975" y="766" />
+            </Array>
+            <mxPoint as="offset" x="-153.16" y="22.95" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="dfd-level-1" name="DFD Level 1 — Main system">
+    <mxGraphModel dx="1660" dy="1232" page="1" pageWidth="1660" pageHeight="1232" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="heading" value="&lt;b&gt;TraceFood · DFD Level 1 — Main system&lt;/b&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=29;fontColor=#213042;resizable=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="42" y="20" width="1576" height="45" />
+        </mxCell>
+        <mxCell id="subtitle" value="External participants, seven processes, and six logical data stores" style="text;html=1;whiteSpace=wrap;strokeColor=none;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#496073;resizable=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="43" y="62" width="1576" height="25" />
+        </mxCell>
+        <mxCell id="note-0" value="Dots join collecting lines for shared records or multiple recipients." style="text;html=1;whiteSpace=wrap;strokeColor=none;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=13;fontColor=#496073;resizable=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="43" y="1193" width="1579" height="40" />
+        </mxCell>
+        <mxCell id="e1" value="&lt;b&gt;E1&lt;/b&gt;&lt;br&gt;Farm / Producer" style="whiteSpace=wrap;html=1;fillColor=#dbefdf;strokeColor=#3a7754;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="53" y="126" width="198" height="78" />
+        </mxCell>
+        <mxCell id="e2" value="&lt;b&gt;E2&lt;/b&gt;&lt;br&gt;Processing Facility" style="whiteSpace=wrap;html=1;fillColor=#dbefdf;strokeColor=#3a7754;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="53" y="322" width="198" height="78" />
+        </mxCell>
+        <mxCell id="e3" value="&lt;b&gt;E3&lt;/b&gt;&lt;br&gt;Distributor / Transporter" style="whiteSpace=wrap;html=1;fillColor=#dbefdf;strokeColor=#3a7754;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="53" y="665" width="198" height="78" />
+        </mxCell>
+        <mxCell id="e4" value="&lt;b&gt;E4&lt;/b&gt;&lt;br&gt;Retailer" style="whiteSpace=wrap;html=1;fillColor=#dbefdf;strokeColor=#3a7754;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="53" y="921" width="198" height="78" />
+        </mxCell>
+        <mxCell id="e5" value="&lt;b&gt;E5&lt;/b&gt;&lt;br&gt;System User / Analyst" style="whiteSpace=wrap;html=1;fillColor=#dbefdf;strokeColor=#3a7754;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1321" y="115" width="236" height="78" />
+        </mxCell>
+        <mxCell id="p1" value="&lt;b&gt;P1&lt;/b&gt;&lt;br&gt;Manage Supply Chain&lt;br&gt;and Batch Records" style="whiteSpace=wrap;html=1;fillColor=#dceaff;strokeColor=#3560a0;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=1;arcSize=13;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="410" y="124" width="213" height="80" />
+        </mxCell>
+        <mxCell id="p2" value="&lt;b&gt;P2&lt;/b&gt;&lt;br&gt;Record Processing&lt;br&gt;and Batch Lineage" style="whiteSpace=wrap;html=1;fillColor=#dceaff;strokeColor=#3560a0;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=1;arcSize=13;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="410" y="319" width="213" height="80" />
+        </mxCell>
+        <mxCell id="p3" value="&lt;b&gt;P3&lt;/b&gt;&lt;br&gt;Manage Quality and&lt;br&gt;Trace Contamination" style="whiteSpace=wrap;html=1;fillColor=#dceaff;strokeColor=#3560a0;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=1;arcSize=13;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="410" y="527" width="213" height="80" />
+        </mxCell>
+        <mxCell id="p4" value="&lt;b&gt;P4&lt;/b&gt;&lt;br&gt;Manage Shipments&lt;br&gt;and Distribution" style="whiteSpace=wrap;html=1;fillColor=#dceaff;strokeColor=#3560a0;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=1;arcSize=13;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="410" y="723" width="213" height="80" />
+        </mxCell>
+        <mxCell id="p5" value="&lt;b&gt;P5&lt;/b&gt;&lt;br&gt;Manage Price Records&lt;br&gt;and Analyse Trends" style="whiteSpace=wrap;html=1;fillColor=#dceaff;strokeColor=#3560a0;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=1;arcSize=13;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="410" y="994" width="213" height="80" />
+        </mxCell>
+        <mxCell id="p6" value="&lt;b&gt;P6&lt;/b&gt;&lt;br&gt;Detect Anomalies&lt;br&gt;and Generate Alerts" style="whiteSpace=wrap;html=1;fillColor=#dceaff;strokeColor=#3560a0;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=1;arcSize=13;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1321" y="816" width="236" height="80" />
+        </mxCell>
+        <mxCell id="p7" value="&lt;b&gt;P7&lt;/b&gt;&lt;br&gt;Query and&lt;br&gt;Generate Reports" style="whiteSpace=wrap;html=1;fillColor=#dceaff;strokeColor=#3560a0;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=1;arcSize=13;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1321" y="351" width="236" height="80" />
+        </mxCell>
+        <mxCell id="d1" value="&lt;b&gt;D1&lt;/b&gt; &amp;nbsp;Farm and Facility Records" style="whiteSpace=wrap;html=1;fillColor=#fff1c5;strokeColor=#a27f17;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;shape=partialRectangle;top=1;right=0;bottom=1;left=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="808" y="105" width="255" height="56" />
+        </mxCell>
+        <mxCell id="d2" value="&lt;b&gt;D2&lt;/b&gt; &amp;nbsp;Batch and Lineage Records" style="whiteSpace=wrap;html=1;fillColor=#fff1c5;strokeColor=#a27f17;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;shape=partialRectangle;top=1;right=0;bottom=1;left=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="808" y="275" width="255" height="56" />
+        </mxCell>
+        <mxCell id="d3" value="&lt;b&gt;D3&lt;/b&gt; &amp;nbsp;Quality Check Records" style="whiteSpace=wrap;html=1;fillColor=#fff1c5;strokeColor=#a27f17;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;shape=partialRectangle;top=1;right=0;bottom=1;left=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="808" y="484" width="255" height="56" />
+        </mxCell>
+        <mxCell id="d4" value="&lt;b&gt;D4&lt;/b&gt; &amp;nbsp;Shipment Records" style="whiteSpace=wrap;html=1;fillColor=#fff1c5;strokeColor=#a27f17;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;shape=partialRectangle;top=1;right=0;bottom=1;left=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="808" y="663" width="255" height="56" />
+        </mxCell>
+        <mxCell id="d2copy" value="&lt;b&gt;D2&lt;/b&gt; &amp;nbsp;Batch and Lineage Records&lt;br&gt;&lt;span style=&quot;font-size:11px;color:#a27f17&quot;&gt;Duplicate of D2&lt;/span&gt;" style="whiteSpace=wrap;html=1;fillColor=#fff1c5;strokeColor=#a27f17;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;shape=partialRectangle;top=1;right=0;bottom=1;left=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="808" y="811" width="255" height="56" />
+        </mxCell>
+        <mxCell id="d5" value="&lt;b&gt;D5&lt;/b&gt; &amp;nbsp;Price Records" style="whiteSpace=wrap;html=1;fillColor=#fff1c5;strokeColor=#a27f17;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;shape=partialRectangle;top=1;right=0;bottom=1;left=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="808" y="1008" width="255" height="56" />
+        </mxCell>
+        <mxCell id="d6" value="&lt;b&gt;D6&lt;/b&gt; &amp;nbsp;Anomaly Alert Records" style="whiteSpace=wrap;html=1;fillColor=#fff1c5;strokeColor=#a27f17;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;shape=partialRectangle;top=1;right=0;bottom=1;left=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1321" y="620" width="236" height="56" />
+        </mxCell>
+        <mxCell id="report-d1" value="" style="whiteSpace=wrap;html=1;fillColor=#202832;strokeColor=#202832;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;ellipse;strokeWidth=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1208" y="127" width="6" height="6" />
+        </mxCell>
+        <mxCell id="report-d2" value="" style="whiteSpace=wrap;html=1;fillColor=#202832;strokeColor=#202832;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;ellipse;strokeWidth=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1208" y="296" width="6" height="6" />
+        </mxCell>
+        <mxCell id="report-p7" value="" style="whiteSpace=wrap;html=1;fillColor=#202832;strokeColor=#202832;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;ellipse;strokeWidth=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1208" y="383" width="6" height="6" />
+        </mxCell>
+        <mxCell id="report-d3" value="" style="whiteSpace=wrap;html=1;fillColor=#202832;strokeColor=#202832;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;ellipse;strokeWidth=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1208" y="507" width="6" height="6" />
+        </mxCell>
+        <mxCell id="report-d4" value="" style="whiteSpace=wrap;html=1;fillColor=#202832;strokeColor=#202832;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;ellipse;strokeWidth=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1208" y="683" width="6" height="6" />
+        </mxCell>
+        <mxCell id="report-d5" value="" style="whiteSpace=wrap;html=1;fillColor=#202832;strokeColor=#202832;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;ellipse;strokeWidth=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1208" y="1035" width="6" height="6" />
+        </mxCell>
+        <mxCell id="analysis-d3" value="" style="whiteSpace=wrap;html=1;fillColor=#202832;strokeColor=#202832;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;ellipse;strokeWidth=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1134" y="507" width="6" height="6" />
+        </mxCell>
+        <mxCell id="analysis-d4" value="" style="whiteSpace=wrap;html=1;fillColor=#202832;strokeColor=#202832;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;ellipse;strokeWidth=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1134" y="683" width="6" height="6" />
+        </mxCell>
+        <mxCell id="analysis-d2" value="" style="whiteSpace=wrap;html=1;fillColor=#202832;strokeColor=#202832;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;ellipse;strokeWidth=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1134" y="834" width="6" height="6" />
+        </mxCell>
+        <mxCell id="analysis-p6" value="" style="whiteSpace=wrap;html=1;fillColor=#202832;strokeColor=#202832;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;ellipse;strokeWidth=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1134" y="854" width="6" height="6" />
+        </mxCell>
+        <mxCell id="analysis-d5" value="" style="whiteSpace=wrap;html=1;fillColor=#202832;strokeColor=#202832;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;ellipse;strokeWidth=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1134" y="1035" width="6" height="6" />
+        </mxCell>
+        <mxCell id="alert-e2" value="" style="whiteSpace=wrap;html=1;fillColor=#202832;strokeColor=#202832;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;ellipse;strokeWidth=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="25" y="351" width="6" height="6" />
+        </mxCell>
+        <mxCell id="alert-e3" value="" style="whiteSpace=wrap;html=1;fillColor=#202832;strokeColor=#202832;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;ellipse;strokeWidth=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="25" y="697" width="6" height="6" />
+        </mxCell>
+        <mxCell id="flow-00" value="Farm &amp;amp; batch details" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.28;exitPerimeter=0;entryX=0;entryY=0.3;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="e1" target="p1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="0.50" y="-11.92" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-01" value="Confirmation,&lt;br&gt;traceability info" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0;exitY=0.71;exitPerimeter=0;entryX=1;entryY=0.68;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p1" target="e1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="0.50" y="17.08" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-02" value="Facility details" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.68;exitY=0;exitPerimeter=0;entryX=0.16;entryY=1;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="e2" target="p1">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="187" y="253" />
+              <mxPoint x="444" y="253" />
+            </Array>
+            <mxPoint as="offset" x="9.50" y="-12.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-03" value="Farm &amp;amp; facility records" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.28;exitPerimeter=0;entryX=0;entryY=0.43;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p1" target="d1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="0.50" y="-18.74" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-04" value="Original batches" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.54;exitPerimeter=0;entryX=0;entryY=0.16;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p1" target="d2">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="-54.50" y="-13.58" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-05" value="Batch &amp;amp; lineage records" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0;exitY=0.49;exitPerimeter=0;entryX=1;entryY=0.86;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="d2" target="p1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="-1.50" y="41.38" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-06" value="Facility reference" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0;exitY=0.83;exitPerimeter=0;entryX=1;entryY=0.13;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="d1" target="p2">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="66.50" y="-48.44" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-07" value="Processing details" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.26;exitPerimeter=0;entryX=0;entryY=0.29;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="e2" target="p2">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="2.50" y="-15.24" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-08" value="Confirmation, lineage info" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0;exitY=0.71;exitPerimeter=0;entryX=1;entryY=0.68;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p2" target="e2">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="-1.50" y="16.58" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-09" value="Output batch, lineage" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.4;exitPerimeter=0;entryX=0;entryY=0.69;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p2" target="d2">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="-1.50" y="-13.32" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-10" value="Input batches" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0;exitY=0.88;exitPerimeter=0;entryX=1;entryY=0.8;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="d2" target="p2">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="8.50" y="18.36" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-11" value="QC results" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.99;exitY=0.89;exitPerimeter=0;entryX=0;entryY=0.23;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="e2" target="p3">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="2.49" y="-24.41" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-12" value="QC confirmation" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0;exitY=0.52;exitPerimeter=0;entryX=0.78;entryY=1;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p3" target="e2">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="-31.72" y="3.70" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-13" value="Lineage" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.17;exitY=1;exitPerimeter=0;entryX=1;entryY=0.11;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="d2" target="p3">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="0.83" y="-4.40" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-14" value="QC record" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.24;exitPerimeter=0;entryX=0;entryY=0.36;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p3" target="d3">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="4.50" y="-11.18" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-15" value="QC history" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0;exitY=0.75;exitPerimeter=0;entryX=1;entryY=0.44;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="d3" target="p3">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="6.50" y="1.90" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-16" value="Shipments &amp;amp; retailers" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0;exitY=0.32;exitPerimeter=0;entryX=0.9;entryY=1;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="d4" target="p3">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="601" y="681" />
+            </Array>
+            <mxPoint as="offset" x="48.50" y="-12.97" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-17" value="Contamination alerts" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0;exitY=0.79;exitPerimeter=0;entryX=0.92;entryY=0;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p3" target="e3">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="10.42" y="-17.60" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-18" value="Retail QC&lt;br&gt;observations" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.26;exitY=0;exitPerimeter=0;entryX=0.14;entryY=1;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="e4" target="p3">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="-30.15" y="21.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-19" value="Contamination&lt;br&gt;alerts" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.38;exitY=1;exitPerimeter=0;entryX=0.57;entryY=0;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p3" target="e4">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="-15.40" y="49.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-20" value="Shipment details" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.51;exitPerimeter=0;entryX=0;entryY=0.27;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="e3" target="p4">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="2.50" y="-20.69" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-21" value="Status,&lt;br&gt;traceability info" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0;exitY=0.62;exitPerimeter=0;entryX=1;entryY=0.79;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p4" target="e3">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="10.50" y="34.39" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-22" value="Retailer &amp;amp;&lt;br&gt;receipt details" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.86;exitY=0;exitPerimeter=0;entryX=0;entryY=0.81;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="e4" target="p4">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="47.36" y="-0.40" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-23" value="Provenance info" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.07;exitY=1;exitPerimeter=0;entryX=1;entryY=0.23;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p4" target="e4">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="59.04" y="18.03" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-24" value="Shipment &amp;amp; retailer records" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.28;exitPerimeter=0;entryX=0;entryY=0.76;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p4" target="d4">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="6.50" y="-6.48" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-25" value="Batch details, availability" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0;exitY=0.27;exitPerimeter=0;entryX=1;entryY=0.7;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="d2copy" target="p4">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="12.50" y="-13.56" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-26" value="Retail prices" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.62;exitPerimeter=0;entryX=0;entryY=0.29;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="e4" target="p5">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="1.50" y="-23.28" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-27" value="Price analysis" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0;exitY=0.76;exitPerimeter=0;entryX=1;entryY=0.9;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p5" target="e4">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="-3.50" y="27.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-28" value="Product &amp;amp; unit" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0;exitY=0.73;exitPerimeter=0;entryX=1;entryY=0.17;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="d2copy" target="p5">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="1.50" y="-11.74" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-29" value="Price observations" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.44;exitPerimeter=0;entryX=0;entryY=0.37;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p5" target="d5">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="4.50" y="-10.96" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-30" value="Price history" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0;exitY=0.76;exitPerimeter=0;entryX=1;entryY=0.87;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="d5" target="p5">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="6.50" y="14.92" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-31" value="Queries &amp;amp;&lt;br&gt;requests" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.24;exitY=1;exitPerimeter=0;entryX=0.24;entryY=0;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="e5" target="p7">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="-42.64" y="-2.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-32" value="Results, reports, forecasts,&lt;br&gt;alert explanations, simulations" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.78;exitY=0;exitPerimeter=0;entryX=0.78;entryY=1;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p7" target="e5">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="15.92" y="-7.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-33" value="Simulation / investigation request" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0;exitY=0.79;exitPerimeter=0;entryX=1;entryY=0.64;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p7" target="p3">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1257" y="414" />
+              <mxPoint x="1257" y="573" />
+            </Array>
+            <mxPoint as="offset" x="-85.50" y="-12.69" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-34" value="Impact / simulation report" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.94;exitPerimeter=0;entryX=0;entryY=0.91;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p3" target="p7">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1287" y="602" />
+              <mxPoint x="1287" y="424" />
+            </Array>
+            <mxPoint as="offset" x="-85.00" y="12.93" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-35" value="Trend / forecast request" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.7;exitPerimeter=0;entryX=0.22;entryY=1;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p7" target="p5">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1606" y="407" />
+              <mxPoint x="1606" y="1138" />
+              <mxPoint x="457" y="1138" />
+            </Array>
+            <mxPoint as="offset" x="-280.50" y="-1.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-36" value="Price trends &amp;amp; forecasts" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.69;exitY=1;exitPerimeter=0;entryX=1;entryY=0.49;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p5" target="p7">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="557" y="1105" />
+              <mxPoint x="1579" y="1105" />
+              <mxPoint x="1579" y="390" />
+            </Array>
+            <mxPoint as="offset" x="-316.00" y="-1.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-37" value="Alerts with scores&lt;br&gt;&amp;amp; evidence" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.5;exitY=0;exitPerimeter=0;entryX=0.5;entryY=1;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p6" target="d6">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="71.00" y="-3.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-38" value="Alerts" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.5;exitY=0;exitPerimeter=0;entryX=0.5;entryY=1;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="d6" target="p7">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="25.00" y="-3.50" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-39" value="Master data" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=1;exitY=0.44642857142857145;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="d1" target="report-d1">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="-32.00" y="-12.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-40" value="Batches, lineage" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=1;exitY=0.42857142857142855;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="d2" target="report-d2">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="-32.00" y="-12.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-41" value="QC records" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=1;exitY=0.4642857142857143;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="d3" target="analysis-d3">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="5.00" y="-12.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-42" value="Shipment records" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=1;exitY=0.4107142857142857;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="d4" target="analysis-d4">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="5.00" y="-12.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-43" value="Batch quantities" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=1;exitY=0.4642857142857143;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="d2copy" target="analysis-d2">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="5.00" y="-12.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-44" value="Price history" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=1;exitY=0.5357142857142857;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="d5" target="analysis-d5">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="5.00" y="-12.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-45" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="analysis-d3" target="report-d3">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="flow-46" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="analysis-d4" target="report-d4">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="flow-47" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="analysis-d5" target="report-d5">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="flow-48" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="report-d1" target="report-d2">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="flow-49" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="report-d2" target="report-p7">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="flow-50" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="report-d5" target="report-d4">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="flow-51" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="report-d4" target="report-d3">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="flow-52" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="report-d3" target="report-p7">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="flow-53" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="analysis-d3" target="analysis-d4">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="flow-54" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="analysis-d4" target="analysis-d2">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="flow-55" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="analysis-d2" target="analysis-p6">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="flow-56" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="analysis-d5" target="analysis-p6">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="flow-57" value="Stored&lt;br&gt;records" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.44;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="report-p7" target="p7">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="7.00" y="-21.10" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-58" value="Data for analysis" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.52;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="analysis-p6" target="p6">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="23.00" y="-13.30" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-59" value="Anomaly alerts for processing facilities and distributors" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=0.53;exitY=1;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p6" target="alert-e3">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1446" y="1184" />
+              <mxPoint x="28" y="1184" />
+            </Array>
+            <mxPoint as="offset" x="197.00" y="0.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-60" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="alert-e3" target="alert-e2">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="flow-61" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.45;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="alert-e3" target="e3">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="flow-62" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.41;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="alert-e2" target="e2">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="dfd-level-2" name="DFD Level 2 — Quality and contamination">
+    <mxGraphModel dx="1500" dy="975" page="1" pageWidth="1500" pageHeight="975" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" background="#ffffff">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="heading" value="&lt;b&gt;TraceFood · DFD Level 2 — Quality and contamination&lt;/b&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=29;fontColor=#213042;resizable=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="42" y="20" width="1416" height="45" />
+        </mxCell>
+        <mxCell id="subtitle" value="Decomposition of P3 Manage Quality and Trace Contamination" style="text;html=1;whiteSpace=wrap;strokeColor=none;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontColor=#496073;resizable=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="43" y="62" width="1416" height="25" />
+        </mxCell>
+        <mxCell id="note-0" value="The hypothetical path enters at P3.2. Only P3.1 writes quality checks to D3." style="text;html=1;whiteSpace=wrap;strokeColor=none;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=13;fontColor=#496073;resizable=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="48" y="923" width="1414" height="40" />
+        </mxCell>
+        <mxCell id="note-1" value="Contamination alerts&lt;br&gt;(confirmed cases only)" style="text;html=1;whiteSpace=wrap;strokeColor=none;align=left;verticalAlign=middle;fontFamily=Arial;fontSize=13;fontColor=#496073;resizable=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1280" y="475" width="182" height="40" />
+        </mxCell>
+        <mxCell id="e2" value="&lt;b&gt;E2&lt;/b&gt;&lt;br&gt;Processing Facility" style="whiteSpace=wrap;html=1;fillColor=#dbefdf;strokeColor=#3a7754;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="50" y="197" width="212" height="75" />
+        </mxCell>
+        <mxCell id="e4" value="&lt;b&gt;E4&lt;/b&gt;&lt;br&gt;Retailer" style="whiteSpace=wrap;html=1;fillColor=#dbefdf;strokeColor=#3a7754;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="50" y="389" width="212" height="75" />
+        </mxCell>
+        <mxCell id="e3" value="&lt;b&gt;E3&lt;/b&gt;&lt;br&gt;Distributor /&lt;br&gt;Transporter" style="whiteSpace=wrap;html=1;fillColor=#dbefdf;strokeColor=#3a7754;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1259" y="381" width="205" height="75" />
+        </mxCell>
+        <mxCell id="e4copy" value="&lt;b&gt;E4&lt;/b&gt;&lt;br&gt;Retailer&lt;br&gt;&lt;span style=&quot;font-size:11px;color:#3a7754&quot;&gt;Duplicate of E4&lt;/span&gt;" style="whiteSpace=wrap;html=1;fillColor=#dbefdf;strokeColor=#3a7754;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1259" y="537" width="205" height="82" />
+        </mxCell>
+        <mxCell id="p31" value="&lt;b&gt;P3.1&lt;/b&gt;&lt;br&gt;Record Quality Check" style="whiteSpace=wrap;html=1;fillColor=#dceaff;strokeColor=#3560a0;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=1;arcSize=13;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="370" y="284" width="211" height="81" />
+        </mxCell>
+        <mxCell id="p32" value="&lt;b&gt;P3.2&lt;/b&gt;&lt;br&gt;Retrieve Batch Lineage" style="whiteSpace=wrap;html=1;fillColor=#dceaff;strokeColor=#3560a0;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=1;arcSize=13;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="695" y="284" width="211" height="81" />
+        </mxCell>
+        <mxCell id="p33" value="&lt;b&gt;P3.3&lt;/b&gt;&lt;br&gt;Identify Potentially&lt;br&gt;Affected Batches" style="whiteSpace=wrap;html=1;fillColor=#dceaff;strokeColor=#3560a0;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=1;arcSize=13;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="695" y="485" width="211" height="81" />
+        </mxCell>
+        <mxCell id="p34" value="&lt;b&gt;P3.4&lt;/b&gt;&lt;br&gt;Trace Shipments&lt;br&gt;and Destinations" style="whiteSpace=wrap;html=1;fillColor=#dceaff;strokeColor=#3560a0;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=1;arcSize=13;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="695" y="682" width="211" height="81" />
+        </mxCell>
+        <mxCell id="p35" value="&lt;b&gt;P3.5&lt;/b&gt;&lt;br&gt;Generate Contamination&lt;br&gt;Impact Report" style="whiteSpace=wrap;html=1;fillColor=#dceaff;strokeColor=#3560a0;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=1;arcSize=13;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1017" y="485" width="211" height="81" />
+        </mxCell>
+        <mxCell id="p7" value="&lt;b&gt;P7&lt;/b&gt;&lt;br&gt;Query and Generate&lt;br&gt;Reports (Level 1)" style="whiteSpace=wrap;html=1;fillColor=#dceaff;strokeColor=#3560a0;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;rounded=1;arcSize=13;dashed=1;dashPattern=5 4;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1017" y="123" width="211" height="81" />
+        </mxCell>
+        <mxCell id="d2" value="&lt;b&gt;D2&lt;/b&gt; &amp;nbsp;Batch and Lineage Records" style="whiteSpace=wrap;html=1;fillColor=#fff1c5;strokeColor=#a27f17;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;shape=partialRectangle;top=1;right=0;bottom=1;left=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="672" y="126" width="254" height="54" />
+        </mxCell>
+        <mxCell id="d3" value="&lt;b&gt;D3&lt;/b&gt; &amp;nbsp;Quality Check Records" style="whiteSpace=wrap;html=1;fillColor=#fff1c5;strokeColor=#a27f17;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;shape=partialRectangle;top=1;right=0;bottom=1;left=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="346" y="633" width="254" height="54" />
+        </mxCell>
+        <mxCell id="d4" value="&lt;b&gt;D4&lt;/b&gt; &amp;nbsp;Shipment Records" style="whiteSpace=wrap;html=1;fillColor=#fff1c5;strokeColor=#a27f17;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;shape=partialRectangle;top=1;right=0;bottom=1;left=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="672" y="827" width="254" height="54" />
+        </mxCell>
+        <mxCell id="alert-join" value="" style="whiteSpace=wrap;html=1;fillColor=#202832;strokeColor=#202832;strokeWidth=1.4;fontSize=15;fontColor=#213042;fontFamily=Arial;align=center;verticalAlign=middle;ellipse;strokeWidth=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1243" y="523" width="6" height="6" />
+        </mxCell>
+        <mxCell id="flow-00" value="Quality-check&lt;br&gt;results" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.3;exitPerimeter=0;entryX=0;entryY=0.22;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="e2" target="p31">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="4.00" y="-16.66" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-01" value="QC confirmation" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0;exitY=0.57;exitPerimeter=0;entryX=1;entryY=0.71;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p31" target="e2">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="-6.00" y="20.79" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-02" value="Retail quality&lt;br&gt;observations" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.33;exitPerimeter=0;entryX=0.11;entryY=1;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="e4" target="p31">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="7.39" y="22.62" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-03" value="Validated&lt;br&gt;QC record" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.49;exitY=1;exitPerimeter=0;entryX=0.5;entryY=0;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p31" target="d3">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="-48.19" y="-1.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-04" value="Failed-check&lt;br&gt;batch ID" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p31" target="p32">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="2.00" y="-20.50" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-05" value="Lineage edges&lt;br&gt;(up &amp;amp; down)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.5;exitY=1;exitPerimeter=0;entryX=0.49;entryY=0;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="d2" target="p32">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="-56.69" y="-2.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-06" value="Simulation / investigation&lt;br&gt;request (batch ID)" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0;exitY=0.4;exitPerimeter=0;entryX=0.87;entryY=0;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p7" target="p32">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="946" y="155" />
+            </Array>
+            <mxPoint as="offset" x="34.27" y="-80.04" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-07" value="Batch lineage" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.5;exitY=1;exitPerimeter=0;entryX=0.5;entryY=0;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p32" target="p33">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="57.50" y="-1.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-08" value="Batch lineage" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.64;exitPerimeter=0;entryX=0.22;entryY=0;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p32" target="p35">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="19.29" y="-6.42" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-09" value="Confirmed QC&lt;br&gt;observations" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.29;exitPerimeter=0;entryX=0;entryY=0.69;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="d3" target="p33">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="-20.50" y="2.23" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-10" value="Affected batch list&lt;br&gt;with assessment" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.52;exitPerimeter=0;entryX=0;entryY=0.52;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p33" target="p35">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="3.50" y="-20.12" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-11" value="Potentially affected&lt;br&gt;batch IDs" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.5;exitY=1;exitPerimeter=0;entryX=0.5;entryY=0;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p33" target="p34">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="65.50" y="-1.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-12" value="Shipment items,&lt;br&gt;retailers" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.5;exitY=0;exitPerimeter=0;entryX=0.49;entryY=1;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="d4" target="p34">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="-62.69" y="5.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-13" value="Affected shipments&lt;br&gt;and retailers" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=1;exitY=0.4;exitPerimeter=0;entryX=0.22;entryY=1;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p34" target="p35">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="15.29" y="20.80" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-14" value="Relevant quality observations for contamination window" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.5;exitY=1;exitPerimeter=0;entryX=0.78;entryY=1;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="d3" target="p35">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="473" y="907" />
+              <mxPoint x="1182" y="907" />
+            </Array>
+            <mxPoint as="offset" x="-55.00" y="0.00" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-15" value="Impact report /&lt;br&gt;simulation report" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.64;exitY=0;exitPerimeter=0;entryX=0.64;entryY=1;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p35" target="p7">
+          <mxGeometry as="geometry" relative="1">
+            <mxPoint as="offset" x="65.96" y="-4.50" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-16" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=none;endSize=7;exitX=1;exitY=0.51;exitPerimeter=0;entryX=0.5;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="p35" target="alert-join">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="flow-17" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.5;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="alert-join" target="e3">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1246" y="419" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="flow-18" value="" style="edgeStyle=none;rounded=0;html=1;strokeWidth=1.3;strokeColor=#202832;endArrow=block;endFill=1;endSize=7;exitX=0.5;exitY=0.5;exitPerimeter=0;entryX=0;entryY=0.51;entryPerimeter=0;fontFamily=Arial;fontSize=13;fontColor=#213042;labelBackgroundColor=#ffffff;verticalAlign=middle;align=center;" edge="1" parent="1" source="alert-join" target="e4copy">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1246" y="579" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

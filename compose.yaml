@@ -1,0 +1,18 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: tracefood
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./db:/tracefood/db:ro
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "tracefood"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
+volumes:
+  db-data:

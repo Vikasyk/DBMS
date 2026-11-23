@@ -1,0 +1,166 @@
+{
+  "data": "Synthetic only",
+  "batches": 4200,
+  "lineage_edges": 2357,
+  "shipments": 2500,
+  "quality_checks": 5000,
+  "prices": 20000,
+  "postgresql": "16.15",
+  "labels": 543,
+  "training_end": "2026-01-17",
+  "validation_end": "2026-04-09",
+  "rules": {
+    "MASS_BALANCE": {
+      "tp": 24,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "OVER_ALLOCATION": {
+      "tp": 63,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "EXPIRED_SHIPMENT": {
+      "tp": 25,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "UNIT_ERROR": {
+      "detected": 13,
+      "planted": 13
+    }
+  },
+  "yield_held_out": {
+    "tested": 180,
+    "scored": 180,
+    "threshold": 3.5,
+    "tp": 1,
+    "fp": 7,
+    "fn": 0,
+    "precision": 0.125,
+    "recall": 1.0,
+    "f1": 0.2222222222222222
+  },
+  "price_anomaly": {
+    "training_rows": 14015,
+    "validation_rows": 2992,
+    "test_rows": 2993,
+    "validation_f1": 0.8623853211009175,
+    "threshold": 0.98,
+    "held_out": {
+      "ALL_PRICE_ANOMALIES": {
+        "isolation_forest": {
+          "tp": 51,
+          "fp": 10,
+          "fn": 9,
+          "precision": 0.8360655737704918,
+          "recall": 0.85,
+          "f1": 0.8429752066115702
+        },
+        "robust_z": {
+          "tp": 59,
+          "fp": 29,
+          "fn": 1,
+          "precision": 0.6704545454545454,
+          "recall": 0.9833333333333333,
+          "f1": 0.7972972972972973
+        }
+      },
+      "PRICE_SPIKE": {
+        "isolation_forest": {
+          "tp": 27,
+          "fp": 10,
+          "fn": 0,
+          "precision": 0.7297297297297297,
+          "recall": 1.0,
+          "f1": 0.84375
+        },
+        "robust_z": {
+          "tp": 27,
+          "fp": 29,
+          "fn": 0,
+          "precision": 0.48214285714285715,
+          "recall": 1.0,
+          "f1": 0.6506024096385542
+        }
+      },
+      "PRICE_DROP": {
+        "isolation_forest": {
+          "tp": 24,
+          "fp": 10,
+          "fn": 9,
+          "precision": 0.7058823529411765,
+          "recall": 0.7272727272727273,
+          "f1": 0.7164179104477612
+        },
+        "robust_z": {
+          "tp": 32,
+          "fp": 29,
+          "fn": 1,
+          "precision": 0.5245901639344263,
+          "recall": 0.9696969696969697,
+          "f1": 0.6808510638297872
+        }
+      }
+    }
+  },
+  "forecast_tomato_bengaluru": {
+    "supported": true,
+    "reason": "",
+    "model": "Holt-Winters",
+    "consecutive_weeks": 77,
+    "metrics": [
+      {
+        "model": "Last observed price",
+        "mae": 3.048589285714286,
+        "mape": 6.378137054003363,
+        "origins": 6
+      },
+      {
+        "model": "Four-week moving average",
+        "mae": 3.390810515873016,
+        "mape": 7.16849230992188,
+        "origins": 6
+      },
+      {
+        "model": "Same week last year",
+        "mae": 3.1985962301587314,
+        "mape": 6.726747488550901,
+        "origins": 6
+      },
+      {
+        "model": "Holt-Winters",
+        "mae": 2.6777364204709877,
+        "mape": 5.686647199271764,
+        "origins": 6
+      }
+    ],
+    "forecast": [
+      {
+        "week": "2026-06-29",
+        "price": 41.24
+      },
+      {
+        "week": "2026-07-06",
+        "price": 39.97
+      },
+      {
+        "week": "2026-07-13",
+        "price": 38.69
+      },
+      {
+        "week": "2026-07-20",
+        "price": 37.42
+      }
+    ]
+  }
+}
