@@ -170,6 +170,9 @@ BEGIN
         IF NOT FOUND THEN
             RAISE EXCEPTION 'Input batch % does not exist', r.bid;
         END IF;
+        IF v_avail IS NULL AND NOT COALESCE(p_allow_over_allocation, FALSE) THEN
+            RAISE EXCEPTION 'Available stock for batch % is unknown. Review allocations before overriding.', r.bid;
+        END IF;
         IF r.qty > v_avail AND NOT COALESCE(p_allow_over_allocation, FALSE) THEN
             RAISE EXCEPTION 'Input batch % has only % available but % was requested '
                             '(set p_allow_over_allocation to record it anyway; it will be flagged)',

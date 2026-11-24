@@ -31,6 +31,7 @@ MONTHS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6,
 
 
 def route(question: str):
+    question = re.sub(r"\bBATCH-(\d{1,9})\b", lambda m: f"B{int(m[1])}", question, flags=re.I)
     words = " ".join(question.lower().split())
     ids = {batch_id.upper() for batch_id in BATCH.findall(question)}
     if len(ids) > 1:

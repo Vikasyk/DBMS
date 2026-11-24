@@ -1,4 +1,5 @@
-import { lazy, Suspense, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react'
+import RegionalPrices from '../RegionalPrices'
+import { createContext, lazy, Suspense, useContext, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react'
 import {
   Activity, BarChart3, ChartNoAxesCombined, CircleHelp,
   Clipboard, ListFilter, Plus, Send, Sparkles, TriangleAlert,
@@ -16,11 +17,13 @@ const PRODUCTS = [
   'Tomato', 'Onion', 'Potato', 'Mango', 'Tomato Puree', 'Tomato Onion Masala', 'Mango Pulp', 'Potato Chips',
 ]
 const UNITS = ['kg', 'L', 'unit']
+const Catalog = createContext({})
 const STAGES = ['FARM', 'PROCESSING_WHOLESALE', 'RETAIL']
 const STATUSES = ['OPEN', 'REVIEWED', 'DISMISSED']
 const ALERT_TYPES = ['MASS_BALANCE', 'OVER_ALLOCATION', 'EXPIRED_SHIPMENT', 'YIELD_OUTLIER', 'PRICE_OUTLIER']
 const PRICE_VIEWS = [
-  ['history', 'Price history'],
+  ['markets', 'Regional markets'],
+  ['history', 'Batch price history'],
   ['stages', 'Stage comparison'],
   ['movements', 'Largest movements'],
   ['forecast', 'Forecast'],
@@ -39,7 +42,7 @@ const shortDate = new Intl.DateTimeFormat('en-IN', { month: 'short', day: 'numer
 const stageNames = {
   FARM: 'Farm', PROCESSING_WHOLESALE: 'Wholesale', RETAIL: 'Retail',
 }
-const methodNames = { RULE: 'Rule', STATISTICAL: 'Statistical', ML: 'Machine learning' }
+const methodNames = { RULE: 'Rule', STATISTICAL: 'Statistical', ML: 'Machine learning', WORKBOOK: 'Imported alert' }
 let conversation = []
 const conversationListeners = new Set()
 
@@ -178,7 +181,7 @@ function chartFromHistory(rows) {
   const keys = new Map()
   const dates = new Map()
   for (const row of rows) {
-    const label = `${row.product_name} · ${stageNames[row.supply_chain_stage]} · ${row.market_location}`
+    const label = `${row.product_name} · ${stageNames[row.supply_chain_stage] ?? row.supply_chain_stage} · ${row.market_location}`
     if (!keys.has(label)) {
       const index = keys.size
       keys.set(label, { key: `series${index}`, label, color: COLORS[index % COLORS.length] })
@@ -205,23 +208,26 @@ function chartFromHistory(rows) {
 }
 
 function ProductSelect({ defaultValue, all = false }) {
+  const { products = PRODUCTS } = useContext(Catalog)
   return (
     <select name="product" defaultValue={defaultValue}>
       {all && <option value="">All products</option>}
-      {PRODUCTS.map((value) => <option key={value}>{value}</option>)}
+      {products.map((value) => <option key={value}>{value}</option>)}
     </select>
   )
 }
 
 function UnitSelect() {
-  return <select name="unit" defaultValue="kg">{UNITS.map((value) => <option key={value}>{value}</option>)}</select>
+  const { units = UNITS } = useContext(Catalog)
+  return <select name="unit" defaultValue="kg">{units.map((value) => <option key={value}>{value}</option>)}</select>
 }
 
 function StageSelect({ optional = false }) {
+  const { stages = STAGES } = useContext(Catalog)
   return (
     <select name="stage" defaultValue={optional ? '' : 'FARM'}>
       {optional && <option value="">All stages</option>}
-      {STAGES.map((stage) => <option value={stage} key={stage}>{stageNames[stage]}</option>)}
+      {(optional ? stages : STAGES).map((stage) => <option value={stage} key={stage}>{stageNames[stage] ?? stage}</option>)}
     </select>
   )
 }
@@ -259,7 +265,7 @@ const priceColumns = [
 ]
 
 function PriceHistory({ movement }) {
-  const [filters, setFilters] = useState({ product: movement ? '' : 'Tomato', unit: 'kg' })
+  const [filters, setFilters] = useState({ product: '', unit: 'kg' })
   const [page, setPage] = useState(1)
   const state = useRead('/prices/history', {
     ...filters, sort: movement ? 'movement' : 'recent', limit: PAGE_SIZE + 1, offset: (page - 1) * PAGE_SIZE,
@@ -499,18 +505,19 @@ function RecordPrice() {
 }
 
 export function Prices() {
+  const catalog = useRead('/prices/catalog')
   const [params, setParams] = useSearchParams()
   const selected = params.get('view')
-  const view = PRICE_VIEWS.some(([key]) => key === selected) ? selected : 'history'
+  const view = PRICE_VIEWS.some(([key]) => key === selected) ? selected : 'markets'
   function openView(key) {
     const next = new URLSearchParams(params)
-    if (key === 'history') next.delete('view')
+    if (key === 'markets') next.delete('view')
     else next.set('view', key)
     setParams(next)
   }
   return (
     <div className="insights stack">
-      <PageHeader title="Prices and trends" description="Track observations, compare supply chain stages, and evaluate retail forecasts." />
+      <PageHeader title="Prices and trends" description="Compare dated commodity quotes by market, variety and region." />
       <nav className="tabs insight-tabs" aria-label="Price workflows">
         {PRICE_VIEWS.map(([key, label]) => (
           <button type="button" className={`tab ${key === view ? 'is-active' : ''}`} key={key} onClick={() => openView(key)} aria-current={key === view ? 'page' : undefined}>
@@ -518,10 +525,13 @@ export function Prices() {
           </button>
         ))}
       </nav>
+      {view === 'markets' ? <RegionalPrices /> : <Notice>Batch analytics use the project’s recorded prices, including simulated workbook data.</Notice>}
+      <Catalog.Provider value={catalog.payload ?? {}}>
       {(view === 'history' || view === 'movements') && <PriceHistory key={view} movement={view === 'movements'} />}
       {view === 'stages' && <StageComparison />}
       {view === 'forecast' && <Forecast />}
       {view === 'record' && <RecordPrice />}
+      </Catalog.Provider>
     </div>
   )
 }
@@ -620,6 +630,8 @@ function AlertDetail({ alertId, revision, onUpdated }) {
             <span className="muted">{methodNames[alert.detection_method]} · {formatDate(alert.alert_date)}</span>
           </div>
           <p className="insight-alert-description">{alert.description}</p>
+          {alert.severity && <p>{alert.severity} severity · {alert.action_taken}</p>}
+          {alert.related_shipment_id && <Link to={`/shipments?shipment=${alert.related_shipment_id}`}>Open shipment {alert.related_shipment_id}</Link>}
           <p className="insight-score"><Activity size={16} /> {scoreText(alert)}</p>
           <Evidence alert={alert} />
           <div className="cluster insight-review-actions">
@@ -633,9 +645,11 @@ function AlertDetail({ alertId, revision, onUpdated }) {
 }
 
 export function Anomalies() {
+  const catalog = useRead('/prices/catalog')
+  const types = [...new Set([...ALERT_TYPES, ...(catalog.payload?.alert_types ?? [])])]
   const [params, setParams] = useSearchParams()
   const status = STATUSES.includes(params.get('status')) ? params.get('status') : ''
-  const alertType = ALERT_TYPES.includes(params.get('type')) ? params.get('type') : ''
+  const alertType = params.get('type') ?? ''
   const batchId = params.get('batch') ?? ''
   const page = Math.max(1, Math.min(5000, Number.parseInt(params.get('page') ?? '1', 10) || 1))
   const selected = params.get('alert')
@@ -702,7 +716,7 @@ export function Anomalies() {
             <select name="status" defaultValue={status}><option value="">All statuses</option>{STATUSES.map((value) => <option value={value} key={value}>{titleCase(value)}</option>)}</select>
           </Field>
           <Field label="Alert type">
-            <select name="type" defaultValue={alertType}><option value="">All alert types</option>{ALERT_TYPES.map((value) => <option value={value} key={value}>{titleCase(value)}</option>)}</select>
+            <select name="type" defaultValue={alertType}><option value="">All alert types</option>{types.map((value) => <option value={value} key={value}>{titleCase(value)}</option>)}</select>
           </Field>
           <Field label="Batch ID"><input name="batch" defaultValue={batchId} maxLength="12" placeholder="Any batch" /></Field>
           <button className="button button-secondary" type="submit"><ListFilter size={16} /> Apply filters</button>

@@ -81,7 +81,7 @@ def dashboard_summary(request: Request):
     with app_pool(request).connection() as conn:
         conn.execute("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ READ ONLY")
         counts = conn.execute(
-            """SELECT (SELECT count(*) FROM tracefood.v_batch_overview) AS batches,
+            """SELECT (SELECT count(*) FROM tracefood.batch) AS batches,
                       (SELECT count(*) FROM tracefood.v_alerts WHERE alert_status = 'OPEN') AS open_alerts,
                       (SELECT count(*) FROM tracefood.v_quality_checks
                        WHERE result = 'FAIL' AND check_date BETWEEN CURRENT_DATE - 29 AND CURRENT_DATE)
@@ -101,7 +101,15 @@ def dashboard_summary(request: Request):
                                retailer_name, destination_city
                FROM tracefood.v_shipment_summary ORDER BY shipment_date DESC, shipment_id DESC LIMIT 5""",
         ).fetchall()
-        return {"counts": counts, "open_alerts_by_type": alert_types,
+        series = conn.execute(
+            """SELECT b.product_name AS product,b.unit,p.market_location AS market
+               FROM tracefood.price_record p JOIN tracefood.batch b USING(batch_id)
+               WHERE p.supply_chain_stage='RETAIL' GROUP BY 1,2,3
+               ORDER BY count(DISTINCT p.price_date) DESC, max(p.price_date) DESC,1,2,3 LIMIT 1"""
+        ).fetchone()
+        workbook = conn.execute("SELECT to_regnamespace('india_source') IS NOT NULL AS present").fetchone()
+        return {"counts": counts, "open_alerts_by_type": alert_types, "retail_series": series,
+                "dataset": "India supply-chain workbook · simulated records" if workbook["present"] else None,
                 "recent_failed_checks": checks, "recent_shipments": shipments}
 
 

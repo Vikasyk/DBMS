@@ -53,3 +53,11 @@ export function formatQuantity(value, unit) {
 export function titleCase(value) {
   return String(value ?? '').toLowerCase().replace(/[_-]/g, ' ').replace(/\b\w/g, (letter) => letter.toUpperCase())
 }
+
+export function appRecordId(value) {
+  const text = value.trim().toUpperCase()
+  const match = /^(BATCH|SHIP|QC|ALT)-(\d{1,9})$/.exec(text)
+  if (!match) return text
+  const prefix = { BATCH: 'B', SHIP: 'S', QC: 'QC', ALT: 'A' }[match[1]]
+  return prefix + Number(match[2])
+}

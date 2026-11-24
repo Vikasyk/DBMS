@@ -4,7 +4,7 @@ from pathlib import Path
 import joblib
 import pandas as pd
 
-from ml.price_anomaly import MODEL_VERSION, build_features, explain_price, score_prices
+from ml.price_anomaly import MODEL_VERSION, build_features, explain_price, fit_model, score_prices
 from ml.yield_anomaly import YIELD_THRESHOLD, explain_yield, score_yields
 
 MODEL_PATH = Path(__file__).resolve().parents[3] / "ml" / "models" / f"{MODEL_VERSION}.joblib"
@@ -62,14 +62,24 @@ def run_detection(conn, tolerance):
             cursor.executemany(INSERT_ALERT, records)
             counts["STATISTICAL"] = cursor.rowcount
 
-    if not MODEL_PATH.is_file():
+    from_workbook = conn.execute("SELECT to_regnamespace('india_source') IS NOT NULL AS yes").fetchone()["yes"]
+    if not from_workbook and not MODEL_PATH.is_file():
         notes.append("Price detection needs the trained Isolation Forest artifact.")
         return counts, notes
 
     prices = pd.DataFrame(conn.execute(PRICE_HISTORY).fetchall())
-    model = _load_model(MODEL_PATH, MODEL_PATH.stat().st_mtime_ns)
     if not prices.empty:
         features = build_features(prices)
+        if from_workbook:
+            cutoff = features.price_date.quantile(0.8)
+            train = features[(features.price_date <= cutoff) & features.robust_z.notna()]
+            if len(train) < 2:
+                notes.append("The workbook has too few comparable earlier prices to train a price detector.")
+                return counts, notes
+            model = fit_model(train)
+            features = features[features.robust_z.notna() & (features.price_date > cutoff)]
+        else:
+            model = _load_model(MODEL_PATH, MODEL_PATH.stat().st_mtime_ns)
         eligible = features[features["price_date"] > model.training_end]
         if not eligible.empty:
             scored = score_prices(model, eligible)

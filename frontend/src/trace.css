@@ -248,7 +248,7 @@
   --trace-node-border: #bfdbb8;
 }
 
-.trace-flow-node a {
+.trace-flow-node a, .trace-flow-info {
   display: block;
   padding: 0.5rem 0.67rem;
   color: inherit;

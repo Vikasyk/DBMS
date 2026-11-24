@@ -7,7 +7,7 @@ import {
   CalendarDays, ClipboardCheck, FlaskConical, GitFork, LockKeyhole, MapPin, Package, Search, Truck,
 } from 'lucide-react'
 import '@xyflow/react/dist/style.css'
-import { api, formatDate, formatQuantity, titleCase } from '../api.js'
+import { api, appRecordId, formatDate, formatQuantity, titleCase } from '../api.js'
 import { DataTable, EmptyState, Field, Notice, PageHeader, Panel, StatusBadge } from '../ui.jsx'
 import '../trace.css'
 
@@ -102,21 +102,31 @@ const shipmentColumns = [
   { key: 'shipment_date', label: 'Shipped on', render: formatDate },
   { key: 'batch_id', label: 'Batch', render: (value) => <Link to={batchPath(value)}>{value}</Link> },
   { key: 'product_name', label: 'Product' },
-  { key: 'quantity_shipped', label: 'Quantity', render: (value, row) => formatQuantity(value, row.unit) },
+  { key: 'source_location', label: 'Dispatched from' },
+  { key: 'destination_city', label: 'Delivery destination', render: (v,r) => [v,r.destination_state].filter(Boolean).join(', ') || '—' },
+  { key: 'shipment_status', label: 'Shipment status' },
+  { key: 'carrier_name', label: 'Carrier', render: (v,r) => [v,r.transport_mode].filter(Boolean).join(' · ') || '—' },
+  { key: 'actual_delivery_date', label: 'Delivered', render: formatDate },
+  { key: 'reported_quantity', label: 'Whole shipment', render: (v,r) => formatQuantity(v,r.reported_unit) },
+  { key: 'quantity_shipped', label: 'Batch allocation', render: (value, row) => formatQuantity(value, row.unit) },
   { key: 'retailer_name', label: 'Retailer', render: (value, row) => <>{value}<span className="trace-table-caption">{row.retailer_city}</span></> },
 ]
 
 const qualityColumns = [
   { key: 'check_id', label: 'Check ID', render: (value, row) => row.result === 'FAIL' ? <Link to={checkPath(value)}>{value}</Link> : value },
   { key: 'check_date', label: 'Date', render: formatDate },
-  { key: 'check_stage', label: 'Stage', render: titleCase },
-  { key: 'result', label: 'Result', render: (value) => <StatusBadge value={value} /> },
+  { key: 'check_stage', label: 'Stage', render: v => v ? titleCase(v) : 'Unrecorded' },
+  { key: 'inspecting_facility_name', label: 'Inspecting facility', render: (v,r) => v || r.inspecting_facility || '—' },
+  { key: 'lab_test_code', label: 'Lab test' },
+  { key: 'inspector_id', label: 'Inspector' },
+  { key: 'result', label: 'Result', render: (value,row) => <StatusBadge value={value}>{row.source_result || titleCase(value)}</StatusBadge> },
   { key: 'contamination_type', label: 'Contamination' },
   { key: 'remarks', label: 'Remarks' },
 ]
 
 const originColumns = [
   { key: 'original_batch_id', label: 'Source batch', render: (value) => <Link to={batchPath(value)}>{value}</Link> },
+  { key: 'product_name', label: 'Product' },
   { key: 'farm_name', label: 'Farm' },
   { key: 'farm_id', label: 'Farm ID' },
   { key: 'city', label: 'City' },
@@ -124,7 +134,7 @@ const originColumns = [
 
 const facilityColumns = [
   { key: 'facility_name', label: 'Facility' },
-  { key: 'facility_city', label: 'City' },
+  { key: 'facility_city', label: 'Facility address', render: (v,r) => [r.street,v,r.facility_state,r.pin_code].filter(Boolean).join(', ') },
   { key: 'operation_type', label: 'Operation', render: titleCase },
   { key: 'processing_date', label: 'Date', render: formatDate },
 ]
@@ -170,13 +180,15 @@ function OriginsTable({ rows }) {
 function BatchNode({ data }) {
   const input = data.vertical ? Position.Top : Position.Left
   const output = data.vertical ? Position.Bottom : Position.Right
+  const content = <>
+    <span className="trace-flow-node-id">{data.kind} {data.id}</span>
+    <span className="trace-flow-product" title={data.product}>{data.product}</span>
+  </>
   return (
     <div className={`trace-flow-node trace-flow-node--${data.side}`}>
       <Handle type="target" position={input} isConnectable={false} />
-      <Link to={batchPath(data.id)} aria-label={`Trace ${data.id} ${data.product}`} className="nodrag nopan">
-        <span className="trace-flow-node-id"><Package size={14} aria-hidden="true" />{data.id}</span>
-        <span className="trace-flow-product" title={data.product}>{data.product}</span>
-      </Link>
+      {data.to ? <Link to={data.to} aria-label={`Trace ${data.id} ${data.product}`} className="nodrag nopan">{content}</Link>
+        : <div className="trace-flow-info">{content}</div>}
       <Handle type="source" position={output} isConnectable={false} />
     </div>
   )
@@ -184,17 +196,47 @@ function BatchNode({ data }) {
 
 const NODE_TYPES = { batch: BatchNode }
 
-function graphLayout(lineage, batch, vertical) {
+function graphLayout(lineage, report, direction, vertical) {
+  const { batch, shipments, facilities } = report
   const predecessors = new Set(lineage.upstream.map((row) => row.batch_id))
   const details = new Map([[batch.batch_id, batch.product_name]])
-  const outgoing = new Map()
-  const incomingCount = new Map()
+  const entities = new Map()
+  const links = []
+  function entity(id, name, kind, side, to) {
+    details.set(id, name)
+    entities.set(id, { kind, side, to })
+  }
   for (const edge of lineage.edges) {
     details.set(edge.input_batch_id, edge.input_product)
     details.set(edge.output_batch_id, edge.output_product)
-    if (!outgoing.has(edge.input_batch_id)) outgoing.set(edge.input_batch_id, [])
-    outgoing.get(edge.input_batch_id).push(edge.output_batch_id)
-    incomingCount.set(edge.output_batch_id, (incomingCount.get(edge.output_batch_id) ?? 0) + 1)
+    links.push({ source: edge.input_batch_id, target: edge.output_batch_id,
+      label: edge.date_conflict ? 'Input dated after output' : edge.quantity_used == null ? 'Input' : formatQuantity(edge.quantity_used, edge.input_unit) })
+  }
+  if (direction !== 'down') {
+    for (const farm of report.origin_farms) {
+      if (!details.has(farm.original_batch_id)) continue
+      entity(farm.farm_id, farm.farm_name, 'Farm', 'upstream')
+      links.push({ source: farm.farm_id, target: farm.original_batch_id, label: 'Origin' })
+    }
+    for (const facility of facilities) {
+      entity(facility.facility_id, facility.facility_name, 'Facility', 'upstream')
+      links.push({ source: facility.facility_id, target: batch.batch_id, label: 'Handling' })
+    }
+  }
+  if (direction !== 'up') {
+    for (const shipment of shipments) {
+      entity(shipment.shipment_id, formatDate(shipment.shipment_date), 'Shipment', 'downstream', shipmentPath(shipment.shipment_id))
+      entity(shipment.retailer_id, shipment.retailer_name, 'Retailer', 'downstream')
+      links.push({ source: batch.batch_id, target: shipment.shipment_id, label: 'Included in' },
+        { source: shipment.shipment_id, target: shipment.retailer_id, label: 'Destination' })
+    }
+  }
+  const outgoing = new Map()
+  const incomingCount = new Map()
+  for (const { source, target } of links) {
+    if (!outgoing.has(source)) outgoing.set(source, [])
+    outgoing.get(source).push(target)
+    incomingCount.set(target, (incomingCount.get(target) ?? 0) + 1)
   }
 
   const queue = [...details.keys()].filter((id) => !incomingCount.has(id))
@@ -223,17 +265,17 @@ function graphLayout(lineage, batch, vertical) {
       id,
       type: 'batch',
       position: vertical ? { x: fromCenter * 174, y: column * 107 } : { x: column * 228, y: fromCenter * 88 },
-      data: { id, side, product: details.get(id), vertical },
+      data: { id, product: details.get(id), vertical,
+        ...(entities.get(id) ?? { kind: 'Batch', side, to: batchPath(id) }) },
       ariaLabel: `${id} ${details.get(id)}`,
     }
   }))
 
-  const edges = lineage.edges.map((edge) => ({
-    id: `${edge.input_batch_id}-${edge.output_batch_id}`,
-    source: edge.input_batch_id,
-    target: edge.output_batch_id,
+  const edges = links.map(({source, target, label}) => ({
+    id: `${source}-${target}`,
+    source, target,
     type: 'smoothstep',
-    label: formatQuantity(edge.quantity_used, edge.input_unit),
+    label,
     labelBgPadding: [5, 3],
     labelBgBorderRadius: 3,
     labelBgStyle: { fill: '#f1f6ef', fillOpacity: 1 },
@@ -248,14 +290,15 @@ const lineageColumns = [
   { key: 'input_batch_id', label: 'Input batch', render: (value) => <Link to={batchPath(value)}>{value}</Link> },
   { key: 'input_product', label: 'Input product' },
   { key: 'quantity_used', label: 'Amount used', render: (value, row) => formatQuantity(value, row.input_unit) },
+  { key: 'date_conflict', label: 'Date check', render: (value) => value ? 'Input dated after output' : 'Consistent' },
   { key: 'output_batch_id', label: 'Output batch', render: (value) => <Link to={batchPath(value)}>{value}</Link> },
   { key: 'output_product', label: 'Output product' },
   { key: 'output_quantity', label: 'Output quantity', render: (value, row) => formatQuantity(value, row.output_unit) },
 ]
 
-function LineageGraph({ batch, lineage }) {
+function LineageGraph({ report, lineage, direction, onShowBoth }) {
   const [vertical, setVertical] = useState(() => window.matchMedia('(max-width: 560px)').matches)
-  const { nodes, edges } = useMemo(() => graphLayout(lineage, batch, vertical), [batch, lineage, vertical])
+  const { nodes, edges } = useMemo(() => graphLayout(lineage, report, direction, vertical), [report, lineage, direction, vertical])
 
   useEffect(() => {
     const media = window.matchMedia('(max-width: 560px)')
@@ -263,10 +306,6 @@ function LineageGraph({ batch, lineage }) {
     media.addEventListener('change', update)
     return () => media.removeEventListener('change', update)
   }, [])
-
-  if (!edges.length) {
-    return <EmptyState icon={GitFork} title="No linked batches" description="There are no lineage connections in this direction." />
-  }
 
   return (
     <>
@@ -292,14 +331,16 @@ function LineageGraph({ batch, lineage }) {
           <Controls position="bottom-left" showInteractive={false} />
         </ReactFlow>
       </div>
+      {!edges.length && <p role="status">No {direction === 'down' ? 'outputs or shipments' : direction === 'up' ? 'inputs, farm or facilities' : 'connections'} recorded for {report.batch.batch_id}.
+        {direction !== 'both' && <> <button type="button" className="button button-secondary" onClick={onShowBoth}>Show both directions</button></>}</p>}
       <div className="trace-flow-legend" aria-label="Lineage legend">
         <span><i className="trace-legend-key trace-legend-key--selected" /> Selected batch</span>
-        <span><i className="trace-legend-key trace-legend-key--upstream" /> Upstream input</span>
-        <span><i className="trace-legend-key trace-legend-key--downstream" /> Downstream output</span>
-        <span className="muted">Select a node to trace that batch</span>
+        <span><i className="trace-legend-key trace-legend-key--upstream" /> Upstream</span>
+        <span><i className="trace-legend-key trace-legend-key--downstream" /> Downstream</span>
+        <span className="muted">Select a batch or shipment to open its record</span>
       </div>
       <details className="trace-edge-details">
-        <summary>View lineage records ({lineage.edges.length})</summary>
+        <summary>Batch derivations ({lineage.edges.length})</summary>
         <DataTable
           columns={lineageColumns}
           getRowKey={(row) => `${row.input_batch_id}-${row.output_batch_id}`}
@@ -312,24 +353,23 @@ function LineageGraph({ batch, lineage }) {
 
 function BatchLineage({ report }) {
   const [direction, setDirection] = useState('both')
-  const { batch } = report
-  const result = useRead(
-    direction === 'both' ? null : `/batches/${routeId(batch.batch_id)}/lineage`,
-    { direction },
-  )
-  const graph = direction === 'both' ? report.lineage : result.data
+  const graph = useMemo(() => {
+    const lineage = report.lineage
+    if (direction === 'both') return lineage
+    const related = direction === 'up' ? lineage.upstream : lineage.downstream
+    const ids = new Set([report.batch.batch_id, ...related.map((row) => row.batch_id)])
+    return { ...lineage, edges: lineage.edges.filter((e) => ids.has(e.input_batch_id) && ids.has(e.output_batch_id)) }
+  }, [report, direction])
   return (
     <Panel
       actions={<TraceTabs label="Lineage direction" items={[
         { id: 'both', label: 'Both directions' }, { id: 'up', label: 'Upstream' }, { id: 'down', label: 'Downstream' },
       ]} active={direction} onChange={setDirection} />}
       className="trace-lineage-panel"
-      description="Follow material from its source batches to processed outputs."
+      description="Trace batch inputs and outputs, handling facilities, and recorded shipments to retailers."
       title="Lineage map"
     >
-      <ErrorNotice message={result.error} />
-      {result.pending && <p className="trace-loading" role="status">Loading lineage…</p>}
-      {graph && <LineageGraph key={`${batch.batch_id}-${direction}`} batch={batch} lineage={graph} />}
+      <LineageGraph key={`${report.batch.batch_id}-${direction}`} report={report} lineage={graph} direction={direction} onShowBoth={() => setDirection('both')} />
     </Panel>
   )
 }
@@ -369,6 +409,8 @@ function BatchSummary({ batch, onStatusChanged }) {
         <article><small>Expiry date</small><strong>{formatDate(batch.expiry_date)}</strong><span>{days === 0 ? 'Expires today' : days < 0 ? `Expired ${Math.abs(days)} days ago` : `${days} days remaining`}</span></article>
       </div>
       <div className="trace-detail-notes">
+        {batch.source_batch_id && <span>{batch.source_batch_id} · {batch.lot_number} · {batch.grade}</span>}
+        {batch.available_quantity === null && <span>Available stock is unknown because movement quantities are incomplete.</span>}
         <span><CalendarDays size={15} aria-hidden="true" /> Produced {formatDate(batch.production_date)}</span>
         {batch.farm_name && <span><MapPin size={15} aria-hidden="true" /> {batch.farm_name}</span>}
         {batch.latest_quality && (
@@ -445,7 +487,7 @@ export function BatchTrace() {
     ? [browse.data].filter((row) => !filters.state || filters.state === row.status)
     : (browse.data ?? []).slice(0, PAGE_SIZE)
   const hasNextPage = !exact && (browse.data?.length ?? 0) > PAGE_SIZE
-  const batchId = params.get('batch')?.toUpperCase() || rows[0]?.batch_id
+  const batchId = appRecordId(params.get('batch') || '') || rows[0]?.batch_id
   const result = useRead(batchId ? `/reports/batch/${routeId(batchId)}` : null, {}, revision)
   const report = result.data
 
@@ -455,7 +497,7 @@ export function BatchTrace() {
 
   function search(event) {
     event.preventDefault()
-    const term = query.trim()
+    const term = /^BATCH-/i.test(query.trim()) ? appRecordId(query) : query.trim()
     setFilters({ term, state: status, offset: 0 })
     if (/^B[0-9]+$/i.test(term) && !status) selectBatch(term.toUpperCase())
     else setParams({})

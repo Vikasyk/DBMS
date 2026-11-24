@@ -8,7 +8,7 @@ import {
 import '@fontsource-variable/dm-sans'
 import '@fontsource-variable/manrope'
 import './styles.css'
-import { api } from './api'
+import { api, appRecordId } from './api'
 import Dashboard from './pages/Dashboard'
 
 const Register = lazy(() => import('./pages/Operations').then(({ Register }) => ({ default: Register })))
@@ -42,7 +42,7 @@ const groups = [
 const pages = groups.flatMap((group) => group.links)
 
 function recordRoute(value) {
-  const id = value.trim().toUpperCase()
+  const id = appRecordId(value)
   if (/^B\d{1,11}$/.test(id)) return `/batches?batch=${id}`
   if (/^S\d{1,11}$/.test(id)) return `/shipments?shipment=${id}`
   if (/^QC\d{1,10}$/.test(id)) return `/quality?check=${id}`

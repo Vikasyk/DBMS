@@ -24,6 +24,8 @@ def build_features(frame: pd.DataFrame) -> pd.DataFrame:
     data["ref_median"] = np.nan
     data["robust_z"] = np.nan
     for _, group in data.groupby(GROUP, sort=False):
+        if len(group) <= MIN_PRICE_HISTORY:
+            continue
         history = group.set_index("price_date")["selling_price"]
         window = history.rolling("30D", closed="left", min_periods=MIN_PRICE_HISTORY)
         median = window.median().to_numpy()

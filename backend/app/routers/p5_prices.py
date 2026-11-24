@@ -4,12 +4,24 @@ from typing import Annotated, Literal, Optional
 from fastapi import APIRouter, HTTPException, Query, Request
 
 from ..db import app_pool
-from ..models import PageOffset, PageSize, PriceCreate, PriceStage, Unit
+from ..models import PageOffset, PageSize, PriceCreate
 from ..services.prices import weekly_retail_history
 from ml.forecast import evaluate_forecast
 
 
 router = APIRouter(tags=["Prices"])
+FilterText = Annotated[str, Query(min_length=1, max_length=60)]
+
+
+@router.get("/prices/catalog")
+def price_catalog(request: Request):
+    with app_pool(request).connection() as conn:
+        return conn.execute("""
+            SELECT ARRAY(SELECT DISTINCT product_name FROM tracefood.batch ORDER BY 1) AS products,
+                   ARRAY(SELECT DISTINCT unit FROM tracefood.batch ORDER BY 1) AS units,
+                   ARRAY(SELECT DISTINCT supply_chain_stage FROM tracefood.price_record ORDER BY 1) AS stages,
+                   ARRAY(SELECT DISTINCT alert_type FROM tracefood.anomaly_alert ORDER BY 1) AS alert_types
+        """).fetchone()
 
 
 @router.post("/prices", status_code=201)
@@ -33,9 +45,9 @@ def price_history(
     request: Request,
     batch_id: Optional[str] = None,
     product: Optional[str] = None,
-    stage: Optional[PriceStage] = None,
+    stage: Optional[FilterText] = None,
     market: Optional[str] = None,
-    unit: Optional[Unit] = None,
+    unit: Optional[FilterText] = None,
     sort: Literal["recent", "movement"] = "recent",
     from_date: Annotated[Optional[date], Query(alias="from")] = None,
     to_date: Annotated[Optional[date], Query(alias="to")] = None,
@@ -68,7 +80,7 @@ def forecast(
     request: Request,
     product: Annotated[str, Query(min_length=1, max_length=60)],
     market: Annotated[str, Query(min_length=1, max_length=60)],
-    unit: Unit = "kg",
+    unit: FilterText = "kg",
 ):
     with app_pool(request).connection() as conn:
         rows = weekly_retail_history(conn, product, market, unit)
@@ -79,7 +91,7 @@ def forecast(
 def stage_comparison(
     request: Request,
     product: Optional[str] = None,
-    unit: Optional[Unit] = None,
+    unit: Optional[FilterText] = None,
     limit: PageSize = 100,
     offset: PageOffset = 0,
 ):

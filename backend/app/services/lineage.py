@@ -31,7 +31,8 @@ def get_lineage(conn, batch_id, direction="both", *, check_batch=True):
         downstream = conn.execute("SELECT * FROM tracefood.fn_downstream(%s)", (batch_id,)).fetchall()
     ids = [batch_id] + [row["batch_id"] for row in upstream + downstream]
     edges = conn.execute(
-        """SELECT * FROM tracefood.v_lineage_edges
+        """SELECT e.*, i.production_date > e.output_production_date AS date_conflict
+           FROM tracefood.v_lineage_edges e JOIN tracefood.batch i ON i.batch_id=e.input_batch_id
            WHERE input_batch_id = ANY(%s) AND output_batch_id = ANY(%s)
            ORDER BY output_production_date, output_batch_id, input_batch_id""",
         (ids, ids),

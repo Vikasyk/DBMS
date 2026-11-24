@@ -1,12 +1,10 @@
+import RegionalPrices from '../RegionalPrices'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  Activity, Boxes, ChartNoAxesCombined, FlaskConical, Plus, RefreshCw,
+  Activity, Boxes, FlaskConical, Plus, RefreshCw,
   ScanLine, ShieldAlert, ShieldCheck, Truck,
 } from 'lucide-react'
-import {
-  Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis,
-} from 'recharts'
 import { api, formatDate, formatQuantity, titleCase } from '../api'
 import { DataTable, EmptyState, Notice, PageHeader, Panel, StatusBadge } from '../ui'
 
@@ -16,77 +14,6 @@ const dashboardMetrics = [
   { key: 'open_alerts', label: 'Open alerts', caption: 'Awaiting review', icon: ShieldAlert, tone: 'amber', link: '/anomalies?status=OPEN' },
   { key: 'recent_failed_checks', label: 'Failed checks', caption: 'In the past 30 days', icon: Activity, tone: 'rose', link: '/quality' },
 ]
-
-const money = new Intl.NumberFormat('en-IN', {
-  style: 'currency', currency: 'INR', maximumFractionDigits: 2, minimumFractionDigits: 0,
-})
-const chartDate = new Intl.DateTimeFormat('en-IN', { day: 'numeric', month: 'short', timeZone: 'UTC' })
-
-function RetailChart({ rows, loading, error }) {
-  const [range, setRange] = useState(14)
-  const daily = new Map()
-  for (const row of rows) {
-    const day = daily.get(row.price_date) || { date: row.price_date, total: 0, count: 0 }
-    day.total += Number(row.selling_price)
-    day.count += 1
-    daily.set(row.price_date, day)
-  }
-  const points = [...daily.values()]
-    .sort((a, b) => a.date.localeCompare(b.date)).slice(-range)
-    .map(({ date, total, count }) => ({ date, price: Math.round(total / count * 100) / 100 }))
-  const latest = points.at(-1)
-  return (
-    <Panel
-      className="price-pulse"
-      title="Retail price trend"
-      description="Tomato · Bengaluru · daily mean per kg"
-      actions={
-        <select className="compact-select" aria-label="Price chart window" value={range} onChange={(event) => setRange(Number(event.target.value))}>
-          <option value={7}>Last 7 price days</option>
-          <option value={14}>Last 14 price days</option>
-          <option value={30}>Last 30 price days</option>
-        </select>
-      }
-    >
-      {error ? <Notice tone="danger">{error}</Notice> : loading && !latest ? (
-        <div className="chart-loading" role="status">Loading price history…</div>
-      ) : !latest ? (
-        <EmptyState icon={ChartNoAxesCombined} title="No retail prices recorded" description="Tomato prices recorded in Bengaluru will appear here." />
-      ) : (
-        <>
-          <div className="price-pulse-lead">
-            <strong>{money.format(latest.price)}<small> / kg</small></strong>
-            <span>{formatDate(latest.date)}</span>
-          </div>
-          <div className="retail-chart" aria-label="Chart of daily Tomato retail prices in Bengaluru">
-            <ResponsiveContainer width="100%" height="100%" minWidth={0}>
-              <AreaChart data={points} margin={{ left: 0, right: 12, top: 13, bottom: 0 }} accessibilityLayer>
-                <defs>
-                  <linearGradient id="retail-fill" x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="0%" stopColor="#43886b" stopOpacity={0.24} />
-                    <stop offset="100%" stopColor="#80b59b" stopOpacity={0.02} />
-                  </linearGradient>
-                </defs>
-                <CartesianGrid vertical={false} stroke="#e7ede8" strokeDasharray="4 4" />
-                <XAxis dataKey="date" tickFormatter={(value) => chartDate.format(new Date(value))}
-                  axisLine={false} tickLine={false} tickMargin={11} minTickGap={24}
-                  tick={{ fill: '#5f7067', fontSize: 12 }} />
-                <YAxis tickFormatter={(value) => money.format(value)} width={46} axisLine={false}
-                  tickLine={false} tick={{ fill: '#5f7067', fontSize: 12 }} />
-                <Tooltip labelFormatter={formatDate} formatter={(value) => [`${money.format(value)} / kg`, 'Mean retail price']}
-                  contentStyle={{ border: '1px solid #dfebe3', borderRadius: 12 }} />
-                <Area type="monotone" dataKey="price" stroke="#2d7656" strokeWidth={3} fill="url(#retail-fill)"
-                  dot={points.length < 9 ? { fill: '#2d7656', r: 4, stroke: '#fff', strokeWidth: 2 } : false}
-                  activeDot={{ r: 6 }} isAnimationActive={false} />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
-        </>
-      )}
-      <Link to="/prices" className="text-link">View price analytics</Link>
-    </Panel>
-  )
-}
 
 function QualityWatch({ summary, loading }) {
   if (!summary) return (
@@ -134,9 +61,7 @@ const shipmentColumns = [
 
 export default function Dashboard() {
   const [summary, setSummary] = useState(null)
-  const [prices, setPrices] = useState([])
   const [error, setError] = useState('')
-  const [priceError, setPriceError] = useState('')
   const [loading, setLoading] = useState(true)
   const [refresh, setRefresh] = useState(0)
 
@@ -144,22 +69,21 @@ export default function Dashboard() {
     const controller = new AbortController()
     const { signal } = controller
     setError('')
-    setPriceError('')
     setLoading(true)
-    const overview = api('/dashboard/summary', { signal })
-      .then((data) => { if (!signal.aborted) setSummary(data) })
+    api('/dashboard/summary', { signal })
+      .then((data) => {
+        if (signal.aborted) return
+        setSummary(data)
+
+      })
       .catch((err) => { if (!signal.aborted) setError(err.message) })
-    const retail = api('/prices/history', {
-      params: { product: 'Tomato', market: 'Bengaluru', stage: 'RETAIL', unit: 'kg', limit: 200 }, signal,
-    }).then((data) => { if (!signal.aborted) setPrices(data) })
-      .catch((err) => { if (!signal.aborted) setPriceError(err.message) })
-    Promise.all([overview, retail]).then(() => { if (!signal.aborted) setLoading(false) })
+      .finally(() => { if (!signal.aborted) setLoading(false) })
     return () => controller.abort()
   }, [refresh])
 
   return (
     <div className="dashboard page-stack">
-      <PageHeader title="Supply chain overview" description="Track batches, shipments, quality checks and prices from one place."
+      <PageHeader title="Supply chain overview" description={summary?.dataset || "Track batches, shipments, quality checks and prices from one place."}
         actions={<>
           <button type="button" className="button button-secondary refresh-button" onClick={() => setRefresh((value) => value + 1)} disabled={loading}>
             <RefreshCw size={16} className={loading ? 'is-spinning' : ''} /> Refresh
@@ -191,7 +115,7 @@ export default function Dashboard() {
       </section>
 
       <div className="dashboard-insights">
-        <RetailChart rows={prices} error={priceError} loading={loading} />
+        <RegionalPrices compact key={refresh} />
         <QualityWatch summary={summary} loading={loading} />
       </div>
 

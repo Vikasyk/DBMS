@@ -154,4 +154,5 @@ CREATE INDEX ix_price_date          ON price_record(price_date);
 CREATE INDEX ix_alert_batch         ON anomaly_alert(batch_id);
 -- De-duplication: the same finding is never stored twice (detector uses ON CONFLICT DO NOTHING)
 CREATE UNIQUE INDEX ux_alert_dedup ON anomaly_alert
-       (batch_id, alert_type, COALESCE(related_shipment_id, '-'), COALESCE(related_price_id, '-'));
+       (batch_id, alert_type, COALESCE(related_shipment_id, '-'), COALESCE(related_price_id, '-'))
+       WHERE detection_method <> 'WORKBOOK';
